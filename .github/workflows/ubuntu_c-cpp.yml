@@ -18,7 +18,7 @@ jobs:
     - name: install_2
       run: sudo apt-get install gcc g++
     - name: cd workdir
-      run : cd ./cd mjpg-streamer-experimental
+      run : cd ./mjpg-streamer-experimental
     - name: configure
       run: ./configure
     - name: make
