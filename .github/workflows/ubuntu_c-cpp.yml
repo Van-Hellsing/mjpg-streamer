@@ -11,7 +11,8 @@ defaults:
     working-directory: ./mjpg-streamer-experimental
     
 jobs:
-  build:
+#  build:
+  archive-build-artifacts:
 
     runs-on: ubuntu-latest
 
