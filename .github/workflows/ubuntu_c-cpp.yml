@@ -22,6 +22,6 @@ jobs:
     - name: install_2
       run: sudo apt-get install gcc g++
     - name: install_3
-      run: sudo apt-get install dpkg debconf debhelper lintian
+      run: sudo apt-get install dpkg debconf debhelper lintian CheckInstall
     - name: make
       run: make
