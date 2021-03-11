@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ master ]
 
+defaults:
+  run:
+    working-directory: ./mjpg-streamer-experimental
+    
 jobs:
   build:
 
@@ -17,8 +21,6 @@ jobs:
       run: sudo apt-get install cmake libjpeg8
     - name: install_2
       run: sudo apt-get install gcc g++
-    - name: cd workdir
-      run : cd ./mjpg-streamer-experimental
     - name: ls
       run: ls -la
     - name: configure
