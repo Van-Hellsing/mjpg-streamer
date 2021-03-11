@@ -39,3 +39,11 @@ jobs:
       with: 
          name: ubuntu_mjpg
          path: out
+    - uses: actions/download-artifact@v2
+      with:
+       name: my-artifact
+       path: path/to/artifact
+    
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: path/to/artifact
