@@ -27,4 +27,9 @@ jobs:
       run: make
     - name: Creating out
       run: | 
-        mkdir out 
+        mkdir out
+    - name: Upload build 
+      uses: actions/upload-artifact@master 
+      with: 
+         name: linux 
+         path: _build
