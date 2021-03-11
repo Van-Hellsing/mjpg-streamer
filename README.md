@@ -1,5 +1,5 @@
-![run-tests](https://github.com/afiskon/go-rest-service-example/workflows/run-tests)
 
+[![Release](https://img.shields.io/github/release/atrox/sync-dotenv.svg?style=flat-square)]
 mjpg-streamer
 =============
 
