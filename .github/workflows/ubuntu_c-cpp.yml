@@ -25,6 +25,8 @@ jobs:
       run: sudo apt-get install dpkg debconf debhelper lintian checkinstall
     - name: make
       run: make
+    - name: ls
+      run: ls -la
     - name: Creating out
       run: | 
         mkdir out
