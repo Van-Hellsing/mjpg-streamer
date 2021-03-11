@@ -35,7 +35,7 @@ jobs:
         cp -r _build/* out
         ls -la
     - name: Upload build 
-      uses: actions/upload-artifact@master 
+      uses: actions/upload-artifact@v2
       with: 
          name: linux 
          path: out
