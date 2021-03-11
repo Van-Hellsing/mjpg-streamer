@@ -31,9 +31,9 @@ jobs:
        ls -la _build
     - name: Creating out
       run: | 
-        mkdir out
+        mkdir -p out
         cp -r _build/* out
-        ls -la
+        ls -la out
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
