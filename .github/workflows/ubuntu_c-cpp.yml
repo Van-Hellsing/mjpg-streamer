@@ -26,10 +26,11 @@ jobs:
     - name: make
       run: make
     - name: ls
-      run: ls -la
+      run: ls -la _build
     - name: Creating out
       run: | 
         mkdir out
+        cp _build/* out
     - name: Upload build 
       uses: actions/upload-artifact@master 
       with: 
