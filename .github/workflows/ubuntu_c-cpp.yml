@@ -32,7 +32,7 @@ jobs:
         cp -r _build/* out
         ls -la out
     - name: Upload build 
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v2
       with: 
          name: ubuntu_mjpg
-         path: out/mjpg-streamer
+         path: ./out/mjpg-streamer
