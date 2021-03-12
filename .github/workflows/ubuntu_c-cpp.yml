@@ -35,4 +35,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
          name: ubuntu_mjpg
-         path: ./out/mjpg-streamer
+         path: ./out/
