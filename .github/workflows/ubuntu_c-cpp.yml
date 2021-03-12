@@ -31,6 +31,8 @@ jobs:
         mkdir -p out
         cp -r _build/* out
         ls -la out
+        pwd
+        ls
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
