@@ -22,8 +22,8 @@ jobs:
       run: sudo apt-get install cmake libjpeg8
     - name: install_2
       run: sudo apt-get install gcc g++
-    - name: install_3
-      run: sudo apt-get install dpkg debconf debhelper lintian checkinstall
+#    - name: install_3
+#      run: sudo apt-get install dpkg debconf debhelper lintian checkinstall
     - name: make
       run: make
     - name: Creating out
