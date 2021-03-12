@@ -26,10 +26,6 @@ jobs:
       run: sudo apt-get install dpkg debconf debhelper lintian checkinstall
     - name: make
       run: make
-    - name: ls
-      run: |
-       ls -la
-       ls -la _build
     - name: Creating out
       run: | 
         mkdir -p out
@@ -39,12 +35,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
          name: ubuntu_mjpg
-         path: out
-    - uses: actions/download-artifact@v2
-      with:
-    #   name: my-artifact
-       path: out
-    
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: out
+         path: out/
