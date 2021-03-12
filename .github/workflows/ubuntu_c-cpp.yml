@@ -35,9 +35,9 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
          name: ubuntu_mjpg
-         path: _build
+         path: out
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         name: mjpg
-        path: _build/mgpg-streamer
+        path: out/mgpg-streamer
