@@ -24,6 +24,10 @@ jobs:
 #      run: sudo apt-get install gcc g++
 #    - name: install_3
 #      run: sudo apt-get install dpkg debconf debhelper lintian checkinstall
+    - name: test
+      run: |
+       pwd
+       ls
     - name: make
       run: make
     - name: Creating out
