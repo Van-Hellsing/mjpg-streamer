@@ -1,3 +1,4 @@
+![run-tests](https://github.com/Van-Hellsing/mjpg-streamer/workflows/run-tests/badge.svg)
 
 
 mjpg-streamer
