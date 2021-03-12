@@ -1,4 +1,4 @@
-![run-tests](https://github.com/Van-Hellsing/mjpg-streamer/workflows/run-tests/badge.svg)
+![run-tests](https://github.com/Van-Hellsing/mjpg-streamer/workflows/ubuntu_c-cpp.yml/badge.svg)
 
 
 mjpg-streamer
