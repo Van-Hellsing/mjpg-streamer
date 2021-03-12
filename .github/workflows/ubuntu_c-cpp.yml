@@ -32,14 +32,13 @@ jobs:
       run: make
     - name: Creating out
       run: | 
-        mkdir -p out
-        cp -r _build/* out
-        ls -la out
+        mkdir -p ../out
+        cp -r _build/* ../out
+        ls -la ../out
         pwd
         ls
     - name: Upload build 
       uses: actions/upload-artifact@v2
-      run: ls
       with: 
          name: ubuntu_mjpg
          path: out
