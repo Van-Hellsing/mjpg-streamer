@@ -31,8 +31,8 @@ jobs:
        make install DESTDIR=../tempinstall
        ls -la tempinstall
        ls -la tempinstall/usr
-       ls -la tempinstall/usr/bin
-       ls -la tempinstall/usr/lib
+       ls -la tempinstall/usr/local/bin
+       ls -la tempinstall/usr/local/lib
     - name: Creating out
       run: | 
         mkdir -p ../out
