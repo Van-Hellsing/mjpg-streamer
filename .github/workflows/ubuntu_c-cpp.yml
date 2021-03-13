@@ -36,7 +36,7 @@ jobs:
        ls -la
        ls -la ../
        echo tempinstall
-       ls -la ../tempinstall
+       ls -la tempinstall
     - name: Creating out
       run: | 
         mkdir -p ../out
