@@ -30,6 +30,13 @@ jobs:
        ls
     - name: make
       run: make
+    - name: make install
+      run: |
+       make install DESTDIR=../tempinstall
+       ls -la
+       ls -la ../
+       echo tempinstall
+       ls -la ../tempinstall
     - name: Creating out
       run: | 
         mkdir -p ../out
