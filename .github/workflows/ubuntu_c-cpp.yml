@@ -28,7 +28,7 @@ jobs:
       run: make
     - name: make install
       run: |
-       rem make install DESTDIR=../tempinstall
+       echo make install DESTDIR=../tempinstall
        make INSTALL_PREFIX=../tempinstall/usr install
        ls -la tempinstall
        ls -la tempinstall/usr
