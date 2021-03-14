@@ -33,9 +33,12 @@ jobs:
 #    - name: check
 #      run: lintian -v ../*.deb
     - name: Creating out
-      run: rm -r ../mjpg-streamer-experimental ../.g* ../README.md
+      run: |
+       rm -r ../mjpg-streamer-experimental ../.g* ../README.md
+       ls
+       ls ../
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
-         name: ubuntu_mjpg
-         path: mjpg-streamer.zip
+         name: mjpg-streamer
+         path: ./mjpg-streamer.zip
