@@ -23,8 +23,7 @@ jobs:
         with:
           arch: armv7
           distro: ubuntu18.04
-      - name: namename
-        run: |
+          run: |
             uname -a
             echo ::set-output name=uname::$(uname -a)
       - name: install_1
