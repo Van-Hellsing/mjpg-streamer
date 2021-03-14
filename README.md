@@ -1,3 +1,6 @@
+![run-tests](https://github.com/Van-Hellsing/mjpg-streamer/workflows/ubuntu_c-cpp/badge.svg)
+
+
 mjpg-streamer
 =============
 
