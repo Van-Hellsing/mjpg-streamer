@@ -15,7 +15,6 @@ Build-Depends: debhelper (>= 10),
 Standards-Version: 4.1.2
 Homepage: https://github.com/RushOnline/mjpg-streamer
 Package: mjpg-streamer
-Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
 Description: Move JPEG from input to output plugin
