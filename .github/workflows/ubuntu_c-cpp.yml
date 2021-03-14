@@ -28,9 +28,11 @@ jobs:
       run: make
     - name: make install
       run: |
-       cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+       echo cmake -DCMAKE_INSTALL_PREFIX=/usr ..
        make install DESTDIR=../tempinstall
        echo make INSTALL_PREFIX=../tempinstall/usr install
+       cp ../debian ../tempinstall/DEBIAN
+       ls
        ls -la tempinstall
        ls -la tempinstall/usr
        ls -la tempinstall/usr/local/bin
