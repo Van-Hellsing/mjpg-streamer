@@ -36,9 +36,9 @@ jobs:
       run: |
        rm -r ../mjpg-streamer-experimental ../.g* ../README.md
        ls
-       ls ../
+       ls -la ../
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
          name: mjpg-streamer
-         path: ./mjpg-streamer.zip
+         path: .
