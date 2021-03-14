@@ -32,12 +32,14 @@ jobs:
        echo cmake -DCMAKE_INSTALL_PREFIX=/usr ..
        make install DESTDIR=../tempinstall
        echo make INSTALL_PREFIX=../tempinstall/usr install
-       cp debian ../tempinstall/DEBIAN
+       cp -r debian tempinstall/DEBIAN
        ls
        ls -la tempinstall
        ls -la tempinstall/usr
        ls -la tempinstall/usr/local/bin
        ls -la tempinstall/usr/local/lib
+       fakeroot dpkg-deb --build tempinstall
+       ls
     - name: Creating out
       run: | 
         mkdir -p ../out
