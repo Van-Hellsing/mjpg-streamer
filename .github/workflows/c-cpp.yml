@@ -1,0 +1,43 @@
+name: armv7
+
+on:
+  push:
+    branches: [ debianize ]
+#  pull_request:
+#    branches: [ debianize ]
+
+defaults:
+  run:
+    working-directory: ./mjpg-streamer-experimental
+    
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install_1
+      run: sudo apt-get install cmake libjpeg8
+    - name: install_2
+      run: sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+    - name: install_3
+      run: sudo apt-get install dpkg debconf lintian
+    - name: make
+      run: make
+    - name: make install
+      run: |
+       tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
+       dpkg-buildpackage -r -us -uc
+#    - name: check
+#      run: lintian -v ../*.deb
+    - name: Creating out
+      run: |
+       rm -r ../mjpg-streamer-experimental ../.g* ../README.md
+       ls
+       ls -la ../
+    - name: Upload build 
+      uses: actions/upload-artifact@v2
+      with: 
+         name: mjpg-streamer
+         path: .
