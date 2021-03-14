@@ -29,7 +29,7 @@ jobs:
       run: |
        tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
        dpkg-buildpackage -r -us -uc
-       zip mjpg-streamer *
+       zip ../mjpg-streamer ../*
 #    - name: check
 #      run: lintian -v ../*.deb
     - name: Creating out
