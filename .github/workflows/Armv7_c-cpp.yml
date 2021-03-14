@@ -42,7 +42,7 @@ jobs:
        rm -r ../mjpg-streamer-experimental ../.g* ../README.md
        ls
        ls -la ../
-       uname -a
+       echo $(uname -a)
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
