@@ -33,7 +33,7 @@ jobs:
        echo cp -r debian tempinstall/DEBIAN
        echo fakeroot dpkg-deb --build tempinstall
        tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
-       dpkg-buildpackage -rfakeroot -us -uc
+       dpkg-buildpackage -r -us -uc
        ls
     - name: Creating out
       run: | 
