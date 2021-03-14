@@ -12,7 +12,6 @@ defaults:
     
 jobs:
   build:
-#  archive-build-artifacts:
 
     runs-on: ubuntu-latest
 
@@ -21,22 +20,17 @@ jobs:
     - name: install_1
       run: sudo apt-get install cmake libjpeg8
     - name: install_2
-      run: |
-       sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+      run: sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
     - name: install_3
-      run: sudo apt-get install dpkg debconf debhelper lintian checkinstall
+      run: sudo apt-get install dpkg debconf lintian 
     - name: make
       run: make
     - name: make install
       run: |
-       echo make install DESTDIR=../tempinstall
-       echo cp -r debian tempinstall/DEBIAN
-       echo fakeroot dpkg-deb --build tempinstall
        tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
        dpkg-buildpackage -r -us -uc
-       ls ../
     - name: Creating out
-      run: rm -r ../mjpg-streamer-experimental
+      run: rm -r ../mjpg-streamer-experimental ../.g* ../README.md
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
