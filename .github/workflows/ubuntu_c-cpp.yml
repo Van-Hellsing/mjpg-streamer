@@ -28,9 +28,10 @@ jobs:
       run: make
     - name: make install
       run: |
-       make install DESTDIR=../tempinstall
-       cp -r debian tempinstall/DEBIAN
-       fakeroot dpkg-deb --build tempinstall
+       echo make install DESTDIR=../tempinstall
+       echo cp -r debian tempinstall/DEBIAN
+       echo fakeroot dpkg-deb --build tempinstall
+       dpkg-buildpackage -rfakeroot -us -uc
        ls
     - name: Creating out
       run: | 
