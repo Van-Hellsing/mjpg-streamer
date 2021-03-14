@@ -36,19 +36,9 @@ jobs:
        dpkg-buildpackage -r -us -uc
        ls ../
     - name: Creating out
-      run: | 
-        mkdir -p ../out
-        cp -r _build/* ../out
-        ls -la ../out
-        pwd
-        ls
+      run: rm -r ../mjpg-streamer-experimental
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
          name: ubuntu_mjpg
-         path: out
- #   - name: Upload artifact
- #     uses: actions/upload-artifact@v1.0.0
- #     with:
- #       name: mjpg
- #       path: out/mgpg-streamer
+         path: .
