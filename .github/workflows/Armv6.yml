@@ -59,7 +59,7 @@ jobs:
           # no secrets are present in the container state or logs.
           install: |
             apt-get update -y
-            apt-get install —y git
+            apt-get install -y git
             apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
 
                 
