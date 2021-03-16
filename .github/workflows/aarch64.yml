@@ -1,0 +1,17 @@
+name: arm
+
+on: [push]
+
+jobs:
+  build:
+  name: Build on ubuntu-18.04 armv7
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build with Swift on arm
+      uses: uraimo/run-on-arch-action@master
+      with:
+        architecture: aarch64
+        distribution: ubuntu18.04
+        run: |
+         apt-get install cmake
+         apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compile
