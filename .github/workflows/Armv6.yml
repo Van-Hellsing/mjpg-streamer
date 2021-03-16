@@ -38,11 +38,12 @@ jobs:
 
           # Create an artifacts directory
           setup: |
-            mkdir -p "${PWD}/artifacts"
+            mkdir -p "../artifacts"
+          #  mkdir -p "${PWD}/artifacts"
 
           # Mount the artifacts directory as /artifacts in the container
           dockerRunArgs: |
-            --volume "${PWD}/artifacts:/artifacts"
+            --volume "../artifacts:/artifacts"
 
           # Pass some environment variables to the container
           env: | # YAML, but pipe character is necessary
