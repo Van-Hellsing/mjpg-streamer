@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-  working-directory: ./mjpg-streamer-experimental
+    working-directory: ./mjpg-streamer-experimental
     
 jobs:
   armv7_job:
