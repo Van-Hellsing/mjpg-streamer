@@ -39,8 +39,10 @@ jobs:
       run: |
        ls -l debian/mjpg-streamer/usr/lib/mjpg-streamer
        rm -r ../mjpg-streamer-experimental ../.g* ../README.md
+       uname -a
+       echo ::set-output name=uname::$(uname -a)
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
-         name: mjpg-streamer-${ uname -m }
+         name: mjpg-streamer-${{ steps.runcmd.outputs.uname }}"
          path: .
