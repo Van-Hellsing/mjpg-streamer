@@ -13,12 +13,14 @@ defaults:
 jobs:
   build:
 
-    runs-on: buster
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
     - name: install_1
-      run: sudo apt-get install libsdl1.2-dev libjpeg62-turbo-dev
+      run: |
+       apt search libjpeg
+       sudo apt-get install libsdl1.2-dev libjpeg62-turbo-dev
     - name: install_2
       run: sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
  #   - name: install_3
