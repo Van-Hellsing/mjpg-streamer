@@ -21,11 +21,11 @@ jobs:
       matrix:
         include:
           - arch: aarch64
-            distro: ubuntu18.04
+            distro: buster
           - arch: armv6
-            distro: ubuntu18.04
+            distro: buster
           - arch: armv7
-            distro: ubuntu18.04
+            distro: buster
 
     steps:
       - uses: actions/checkout@v2.1.0
