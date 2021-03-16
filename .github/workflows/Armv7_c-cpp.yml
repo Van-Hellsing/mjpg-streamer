@@ -7,10 +7,8 @@ on:
 #    branches: [ debianize ]
 
 defaults:
-  with:
-    arch: armv7
-    run:
-    working-directory: ./mjpg-streamer-experimental
+  run:
+  working-directory: ./mjpg-streamer-experimental
     
 jobs:
   armv7_job:
@@ -28,18 +26,15 @@ jobs:
           run: |
             uname -a
             echo ::set-output name=uname::$(uname -a)
-      - name: install_1
-        run: sudo apt-get install cmake libjpeg8
-      - name: install_2
-        run: sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
-      - name: install_3
-        run: sudo apt-get install dpkg debconf lintian
-      - name: make
-        run: make
+            sudo apt-get install cmake libjpeg8
+            sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compile
       - name: make install
-        run: |
-         tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
-         dpkg-buildpackage -r -us -uc
+        with:
+          arch: armv7
+          distro: ubuntu18.04
+          run: |
+          tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
+          dpkg-buildpackage -r -us -uc
 #    - name: check
 #      run: lintian -v ../*.deb
       - name: Creating out
