@@ -20,7 +20,7 @@ jobs:
     - name: install_1
       run: |
        apt search libjpeg
-       sudo apt-get install libsdl1.2-dev libjpeg8-dev
+       sudo apt-get install libsdl1.2-dev libjpeg8-dev gcc g++
     - name: install_2
       run: sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
  #   - name: install_3
