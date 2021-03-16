@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: amd64
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: install_1
-      run: sudo apt-get install cmake libjpeg8
+      run: sudo apt-get install cmake libjpeg8 libsdl1.2-dev
     - name: install_2
       run: sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
     - name: install_3
@@ -27,9 +27,6 @@ jobs:
       run: |
        sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
        sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
-       make
-    - name: make install
-      run: |
        tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
        dpkg-buildpackage -r -us -uc
 #    - name: check
@@ -37,8 +34,7 @@ jobs:
     - name: Creating out
       run: |
        rm -r ../mjpg-streamer-experimental ../.g* ../README.md
-       ls
-       ls -la ../
+       ls -l debian/mjpg-streamer/usr/lib/mjpg-streamer
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
