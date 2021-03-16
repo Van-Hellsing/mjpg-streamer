@@ -42,5 +42,5 @@ jobs:
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
-         name: mjpg-streamer-${{ uname -m }}
+         name: mjpg-streamer-${ uname -m }
          path: .
