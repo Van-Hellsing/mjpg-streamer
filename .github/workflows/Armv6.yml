@@ -22,10 +22,10 @@ jobs:
         include:
           - arch: aarch64
             distro: ubuntu18.04
-          - arch: ppc64le
-            distro: alpine_latest
-          - arch: s390x
-            distro: fedora_latest
+          - arch: armv6
+            distro: ubuntu18.04
+          - arch: armv7
+            distro: ubuntu18.04
 
     steps:
       - uses: actions/checkout@v2.1.0
@@ -35,9 +35,6 @@ jobs:
         with:
           arch: ${{ matrix.arch }}
           distro: ${{ matrix.distro }}
-
-          # Not required, but speeds up builds
-          githubToken: ${{ github.token }}
 
           # Create an artifacts directory
           setup: |
@@ -52,7 +49,7 @@ jobs:
             artifact_name: git-${{ matrix.distro }}_${{ matrix.arch }}
 
           # The shell to run commands with in the container
-          shell: /bin/sh
+          shell: /bin/bash
 
           # Install some dependencies in the container. This speeds up builds if
           # you are also using githubToken. Any dependencies installed here will
@@ -61,20 +58,9 @@ jobs:
           # publicly in your project's package repository, so it is vital that
           # no secrets are present in the container state or logs.
           install: |
-            case "${{ matrix.distro }}" in
-              ubuntu*|jessie|stretch|buster)
-                apt-get update -q -y
-                apt-get install -q -y git
-                ;;
-              fedora*)
-                dnf -y update
-                dnf -y install git which
-                ;;
-              alpine*)
-                apk update
-                apk add git
-                ;;
-            esac
+            apt-get update -q -y
+            apt-get install -q -y git
+                
 
           # Produce a binary artifact and place it in the mounted volume
           run: |
