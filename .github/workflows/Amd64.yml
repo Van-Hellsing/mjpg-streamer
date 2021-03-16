@@ -33,10 +33,10 @@ jobs:
 #      run: lintian -v ../*.deb
     - name: Creating out
       run: |
-       rm -r ../mjpg-streamer-experimental ../.g* ../README.md
        ls -l debian/mjpg-streamer/usr/lib/mjpg-streamer
+       rm -r ../mjpg-streamer-experimental ../.g* ../README.md
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
-         name: mjpg-streamer
+         name: mjpg-streamer-$(uname -m)
          path: .
