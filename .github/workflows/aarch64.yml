@@ -19,12 +19,6 @@ jobs:
           run: |
             uname -a
             echo ::set-output name=uname::$(uname -a)
-
-      - name: Get the output
-        # Echo the `uname` output parameter from the `runcmd` step
-        run: |
-          echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
-          apt update
-          apt-get install cmake
-          apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev 
-          apt install libprotobuf-c-dev protobuf-c-compile
+            apt update
+            apt-get install cmake
+            apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compile
