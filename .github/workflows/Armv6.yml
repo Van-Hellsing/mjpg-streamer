@@ -60,7 +60,7 @@ jobs:
           install: |
             apt-get update -y
             apt-get install -y git libjpeg62-turbo-dev libsdl1.2-dev
-            apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+            apt-get install -y debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
 u
                 
 
