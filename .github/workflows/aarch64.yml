@@ -1,17 +1,26 @@
-name: arm
-
-on: [push]
-
 jobs:
-  build:
-  name: Build on ubuntu-18.04 armv7
+  armv7_job:
+    # The host should always be Linux
+    runs-on: ubuntu-18.04
+    name: Build on ubuntu-18.04 armv7
     steps:
-    - uses: actions/checkout@v2
-    - name: Build with Swift on arm
-      uses: uraimo/run-on-arch-action@master
-      with:
-        architecture: aarch64
-        distribution: ubuntu18.04
+      - uses: actions/checkout@v2.1.0
+      - uses: uraimo/run-on-arch-action@v2.0.5
+        name: Run commands
+        id: runcmd
+        with:
+          arch: armv7
+          distro: ubuntu18.04
+          # Set an output parameter `uname` for use in subsequent steps
+          run: |
+            uname -a
+            echo ::set-output name=uname::$(uname -a)
+
+      - name: Get the output
+        # Echo the `uname` output parameter from the `runcmd` step
         run: |
-         apt-get install cmake
-         apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compile
+          echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
+          apt update
+          apt-get install cmake
+          apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev 
+          apt install libprotobuf-c-dev protobuf-c-compile
