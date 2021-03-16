@@ -28,7 +28,8 @@ jobs:
             echo ::set-output name=uname::$(uname -a)
             sudo apt-get install cmake libjpeg8
             sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compile
-      - name: make install
+      - uses: uraimo/run-on-arch-action@v2.0.5
+        name: make install
         with:
           arch: armv7
           distro: ubuntu18.04
