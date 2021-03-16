@@ -1,4 +1,4 @@
-name: arm
+name: armv7
 
 on: [push]
 
@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2.1.0
       - uses: uraimo/run-on-arch-action@v2.0.5
         name: Run commands
-        id: runcmd
+        id: ver
         with:
           arch: armv7
           distro: ubuntu18.04
