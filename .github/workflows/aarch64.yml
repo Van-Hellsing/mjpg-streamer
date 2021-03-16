@@ -1,3 +1,7 @@
+name: arm
+
+on: [push]
+
 jobs:
   armv7_job:
     # The host should always be Linux
