@@ -58,9 +58,9 @@ jobs:
           # publicly in your project's package repository, so it is vital that
           # no secrets are present in the container state or logs.
           install: |
-            apt-get update -y
-            apt-get install -y git libjpeg62-turbo-dev libsdl1.2-dev
-            apt-get install -y debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+            apt-get update -y -q
+            apt-get install -y -q git libjpeg62-turbo-dev libsdl1.2-dev
+            apt-get install -y -q debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
 
                 
 
@@ -74,6 +74,8 @@ jobs:
             sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
             tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
             dpkg-buildpackage -r -us -uc
+            ls
+            ls ../
     
 
       - name: Show the artifact
