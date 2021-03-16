@@ -44,5 +44,5 @@ jobs:
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
-         name: mjpg-streamer-${{ steps.runcmd.outputs.uname }}"
+         name: mjpg-streamer-${{ steps.runcmd.outputs.uname }}
          path: .
