@@ -59,7 +59,8 @@ jobs:
           # no secrets are present in the container state or logs.
           install: |
             apt-get update -y -q
-            apt-get install -y -q gcc g++ libjpeg62-turbo-dev libsdl1.2-dev wget
+            apt-get install -y -q gcc g++ libjpeg62-turbo-dev libsdl1.2-dev
+            apt-get install -y -q wget libssl-dev
             #cmake
             apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
 
