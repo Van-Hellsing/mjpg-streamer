@@ -78,6 +78,7 @@ jobs:
             #make install
             #cmake --version 
             #cd ..
+            echo "start"
             ls
             #cp $(which git) "/artifacts/${artifact_name}"
             #echo "Produced artifact at /artifacts/${artifact_name}"
@@ -86,6 +87,7 @@ jobs:
             sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
             sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
             tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
+            echo "make"
             make
             dpkg-buildpackage -r -us -uc
             ls
