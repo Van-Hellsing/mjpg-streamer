@@ -60,14 +60,14 @@ jobs:
           install: |
             apt-get update -y -q
             apt-get install -y -q gcc g++ libjpeg62-turbo-dev libsdl1.2-dev
-            apt-get install -y -q wget libssl-dev
-            #cmake
+            apt-get install -y -q wget libssl-dev cmake
             apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
 
                 
 
           # Produce a binary artifact and place it in the mounted volume
           run: |
+            cmake --version 
             export CFLAGS="-D_FILE_OFFSET_BITS=64"
             export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
             wget https://github.com/Kitware/CMake/releases/download/v3.19.7/cmake-3.19.7.tar.gz
@@ -76,6 +76,7 @@ jobs:
             ./bootstrap
             make
             make install
+            cmake --version 
             cd ..
             ls
             #cp $(which git) "/artifacts/${artifact_name}"
