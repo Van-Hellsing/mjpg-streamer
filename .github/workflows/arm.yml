@@ -60,8 +60,8 @@ jobs:
           install: |
             apt-get update -y -q
             apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev 
-            #gcc g++ cmake
-            apt-get install -y -q wget libssl-dev build-essential
+            #gcc g++
+            apt-get install -y -q wget libssl-dev build-essential cmake
             apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
 
                 
