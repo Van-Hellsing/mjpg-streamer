@@ -73,6 +73,7 @@ jobs:
             sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
             sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
             tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
+            make
             dpkg-buildpackage -r -us -uc
             ls
             ls ../
