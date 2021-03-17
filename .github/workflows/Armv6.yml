@@ -66,8 +66,8 @@ jobs:
 
           # Produce a binary artifact and place it in the mounted volume
           run: |
-            cp $(which git) "/artifacts/${artifact_name}"
-            echo "Produced artifact at /artifacts/${artifact_name}"
+            #cp $(which git) "/artifacts/${artifact_name}"
+            #echo "Produced artifact at /artifacts/${artifact_name}"
             #
             cd mjpg-streamer-experimental
             sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
