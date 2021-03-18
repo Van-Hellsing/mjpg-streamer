@@ -69,9 +69,9 @@ jobs:
           # Produce a binary artifact and place it in the mounted volume
           run: |
             #cmake --version 
-            ver=$(cmake --version|awk '/version/ {print $3}')
-            echo $ver
-            echo "https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz"
+            #ver=$(cmake --version|awk '/version/ {print $3}')
+            #echo $ver
+            #echo "https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz"
             export CFLAGS="-D_FILE_OFFSET_BITS=64"
             export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
             wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
@@ -81,27 +81,29 @@ jobs:
             make
             make install
             #cmake --version 
-            cd ..
-            echo "start"
-            ls
+            cd ../mjpg-streamer-experimental
+            #echo "start"
+            #ls
             #cp $(which git) "/artifacts/${artifact_name}"
             #echo "Produced artifact at /artifacts/${artifact_name}"
             #
-            cd mjpg-streamer-experimental
+            #cd mjpg-streamer-experimental
             sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
             sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
             tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
-            echo "make"
+            #echo "make"
             #make
             dpkg-buildpackage -r -us -uc
-            ls
-            ls ../
+            #ls
+            #ls ../
     
 
       - name: Show the artifact
         # Items placed in /artifacts in the container will be in
         # ${PWD}/artifacts on the host.
         run: |
+          mv mjpg-streamer_* ${PWD}/artifacts
+          mv mjpg-streamer-experimental.orig.tar.gz ${PWD}/artifacts
           ls -la
           ls -al "${PWD}/artifacts"
           
@@ -109,4 +111,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with: 
          name: "mjpg-streamer-${{ matrix.arch }}"
-         path: .
+         path: artifacts
