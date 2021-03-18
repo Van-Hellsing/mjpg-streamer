@@ -71,16 +71,16 @@ jobs:
             #cmake --version 
             ver=$(cmake --version|awk '/version/ {print $3}')
             echo $ver
-            #export CFLAGS="-D_FILE_OFFSET_BITS=64"
-            #export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
-            #wget https://github.com/Kitware/CMake/releases/download/v3.19.7/cmake-3.19.7.tar.gz
-            #tar -zxvf cmake-3.19.7.tar.gz
-            #cd cmake-3.19.7
-            #./bootstrap
-            #make
-            #make install
+            export CFLAGS="-D_FILE_OFFSET_BITS=64"
+            export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
+            wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
+            tar -zxvf cmake-$ver.tar.gz
+            cd cmake-$ver
+            ./bootstrap
+            make
+            make install
             #cmake --version 
-            #cd ..
+            cd ..
             echo "start"
             ls
             #cp $(which git) "/artifacts/${artifact_name}"
