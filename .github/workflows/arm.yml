@@ -61,7 +61,7 @@ jobs:
             apt-get update -y -q
             apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
             #gcc g++
-            apt-get install -y -q cmake build-essential
+            apt-get install -y -q cmake build-essential gcc-arm-linux-gnueabihf
             apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
 
                 
