@@ -104,3 +104,9 @@ jobs:
         run: |
           ls -la
           ls -al "${PWD}/artifacts"
+          
+      - name: Upload build 
+        uses: actions/upload-artifact@v2
+        with: 
+         name: "mjpg-streamer-${{ matrix.arch }}"
+         path: .
