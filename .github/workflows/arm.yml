@@ -61,7 +61,7 @@ jobs:
             apt-get update -y -q
             apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
             #gcc g++
-            apt-get install -y -q wget cmake build-essential g++-arm-linux-gnueabihf extra-cmake-modules cmake-extras libc6-dev openssl-dev
+            apt-get install -y -q wget cmake build-essential g++-arm-linux-gnueabihf extra-cmake-modules cmake-extras libc6-dev libssl-dev
             apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
 
                 
