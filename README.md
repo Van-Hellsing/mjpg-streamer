@@ -1,5 +1,4 @@
-![run-tests](https://github.com/Van-Hellsing/mjpg-streamer/workflows/ubuntu_c-cpp/badge.svg)
-
+[![amd64](https://github.com/Van-Hellsing/mjpg-streamer/actions/workflows/Amd64.yml/badge.svg?branch=debianize)](https://github.com/Van-Hellsing/mjpg-streamer/actions/workflows/Amd64.yml)
 
 mjpg-streamer
 =============
