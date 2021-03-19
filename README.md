@@ -1,5 +1,3 @@
-[![arm](https://github.com/Van-Hellsing/mjpg-streamer/actions/workflows/arm.yml/badge.svg?branch=debianize)](https://github.com/Van-Hellsing/mjpg-streamer/actions/workflows/arm.yml)
-
 mjpg-streamer
 =============
 
