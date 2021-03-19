@@ -69,7 +69,7 @@ jobs:
           # Produce a binary artifact and place it in the mounted volume
           run: |
             #cmake --version 
-            #ver=$(cmake --version|awk '/version/ {print $3}')
+            ver=$(cmake --version|awk '/version/ {print $3}')
             #echo $ver
             #echo "https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz"
             export CFLAGS="-D_FILE_OFFSET_BITS=64"
