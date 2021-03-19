@@ -103,9 +103,10 @@ jobs:
         # ${PWD}/artifacts on the host.
         run: |
           mv mjpg-streamer_* ${PWD}/artifacts
+          mv mjpg-streamer-dbgsym_1.0_armhf.deb ${PWD}/artifacts
           mv mjpg-streamer-experimental.orig.tar.gz ${PWD}/artifacts
           ls -la
-          ls -al "${PWD}/artifacts"
+          ls -l "${PWD}/artifacts"
           
       - name: Upload build 
         uses: actions/upload-artifact@v2
