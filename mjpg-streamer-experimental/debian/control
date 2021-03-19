@@ -1,0 +1,23 @@
+Source: mjpg-streamer
+Section: utils
+Priority: optional
+Maintainer: Rush Future <rush.zlo@gmail.com>
+Build-Depends: debhelper (>= 10),
+    devscripts,
+    cmake,
+    libgphoto2-dev,
+    libopencv-dev,
+    python3-numpy,
+    python3-dev,
+    libzmq3-dev,
+    libprotobuf-c-dev,
+    protobuf-c-compiler
+Standards-Version: 4.1.2
+Homepage: https://github.com/RushOnline/mjpg-streamer
+
+Package: mjpg-streamer
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+Description: Move JPEG from input to output plugin
+ mjpg-streamer is a command line application that copies JPEG frames from one or more input plugins to multiple output plugins. It can be used to stream JPEG files over an IP-based network from a webcam to various types of viewers such as Chrome, Firefox, Cambozola, VLC, mplayer, and other software capable of receiving MJPG streams.
