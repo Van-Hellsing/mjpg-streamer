@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE = 1
+
+%:
+	dh $@ --buildsystem=cmake
+
+
+override_dh_auto_configure:
+	dh_auto_configure -- -DENABLE_HTTP_MANAGEMENT=1
+
+override_dh_auto_install:
+	dh_auto_install
+	dh_systemd_enable
