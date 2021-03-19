@@ -1,4 +1,4 @@
-[![amd64](https://github.com/Van-Hellsing/mjpg-streamer/actions/workflows/Amd64.yml/badge.svg?branch=debianize)](https://github.com/Van-Hellsing/mjpg-streamer/actions/workflows/Amd64.yml)
+[![arm](https://github.com/Van-Hellsing/mjpg-streamer/actions/workflows/arm.yml/badge.svg?branch=debianize)](https://github.com/Van-Hellsing/mjpg-streamer/actions/workflows/arm.yml)
 
 mjpg-streamer
 =============
