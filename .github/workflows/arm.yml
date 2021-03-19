@@ -6,10 +6,6 @@ on:
 #  pull_request:
 #    branches: [ debianize ]
 
-#defaults:
-#  run:
-#    working-directory: ./mjpg-streamer-experimental
-
 jobs:
   build_job:
     # The host should always be linux
@@ -44,10 +40,6 @@ jobs:
           dockerRunArgs: |
             --volume "${PWD}/artifacts:/artifacts"
 
-          # Pass some environment variables to the container
-          env: | # YAML, but pipe character is necessary
-            artifact_name: git-${{ matrix.distro }}_${{ matrix.arch }}
-
           # The shell to run commands with in the container
           shell: /bin/bash
 
@@ -60,7 +52,6 @@ jobs:
           install: |
             apt-get update -y -q
             apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
-            #gcc g++
             apt-get install -y -q wget cmake build-essential g++-arm-linux-gnueabihf extra-cmake-modules cmake-extras libc6-dev libssl-dev
             apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
 
@@ -68,10 +59,7 @@ jobs:
 
           # Produce a binary artifact and place it in the mounted volume
           run: |
-            #cmake --version 
             ver=$(cmake --version|awk '/version/ {print $3}')
-            #echo $ver
-            #echo "https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz"
             export CFLAGS="-D_FILE_OFFSET_BITS=64"
             export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
             wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
@@ -80,23 +68,11 @@ jobs:
             ./bootstrap
             make
             make install
-            #cmake --version 
             cd ../mjpg-streamer-experimental
-            #echo "start"
-            #ls
-            #cp $(which git) "/artifacts/${artifact_name}"
-            #echo "Produced artifact at /artifacts/${artifact_name}"
-            #
-            #cd mjpg-streamer-experimental
             sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
             sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
             tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
-            #echo "make"
-            #make
-            dpkg-buildpackage -r -us -uc
-            #ls
-            #ls ../
-    
+            dpkg-buildpackage -r -us -uc    
 
       - name: Show the artifact
         # Items placed in /artifacts in the container will be in
@@ -105,7 +81,6 @@ jobs:
           mv mjpg-streamer_* ${PWD}/artifacts
           mv mjpg-streamer-dbgsym_* ${PWD}/artifacts
           mv mjpg-streamer-experimental.orig.tar.gz ${PWD}/artifacts
-          ls -la
           ls -l "${PWD}/artifacts"
           
       - name: Upload build 
