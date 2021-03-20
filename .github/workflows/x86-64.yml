@@ -1,4 +1,4 @@
-name: armv7
+name: amd64
 
 on:
   push:
@@ -11,39 +11,39 @@ defaults:
     working-directory: ./mjpg-streamer-experimental
     
 jobs:
-  armv7_job:
-    # The host should always be Linux
+  build:
     runs-on: ubuntu-18.04
-    name: Build on ubuntu-18.04 armv7
+
     steps:
-      - uses: actions/checkout@v2.1.0
-      - uses: uraimo/run-on-arch-action@v2.0.5
-        name: Run commands
-        id: runcmd
-        with:
-          arch: armv7
-          distro: ubuntu18.04
+    - uses: actions/checkout@v2
     - name: install_1
-      run: sudo apt-get install cmake libjpeg8
+      run: |
+       apt search libjpeg
+       sudo apt-get install libsdl1.2-dev libjpeg8-dev
+# gcc g++
     - name: install_2
       run: sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
-    - name: install_3
-      run: sudo apt-get install dpkg debconf lintian
+ #   - name: install_3
+ #     run: sudo apt-get install dpkg debconf lintian
     - name: make
-      run: make
-    - name: make install
       run: |
+       sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
+       sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
        tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
        dpkg-buildpackage -r -us -uc
+    - name: makemake
+      run: make
 #    - name: check
 #      run: lintian -v ../*.deb
     - name: Creating out
+      id: ver
       run: |
+       ls -l debian/mjpg-streamer/usr/lib/mjpg-streamer
        rm -r ../mjpg-streamer-experimental ../.g* ../README.md
-       ls
-       ls -la ../
+       echo ::set-output name=uname::$(uname -m)
+       echo "The uname output was ${{ steps.ver.outputs.uname }}"
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
-         name: mjpg-streamer
+         name: "mjpg-streamer-${{ steps.ver.outputs.uname }}"
          path: .

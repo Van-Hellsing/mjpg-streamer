@@ -1,0 +1,90 @@
+name: arm
+
+on:
+  push:
+    branches: [ debianize ]
+#  pull_request:
+#    branches: [ debianize ]
+
+jobs:
+  build_job:
+    # The host should always be linux
+    runs-on: ubuntu-18.04
+    name: Build on ${{ matrix.distro }} ${{ matrix.arch }}
+
+    # Run steps on a matrix of 3 arch/distro combinations
+    strategy:
+      matrix:
+        include:
+          - arch: aarch64
+            distro: buster
+          - arch: armv6
+            distro: buster
+          - arch: armv7
+            distro: buster
+
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - uses: uraimo/run-on-arch-action@v2.0.5
+        name: Build artifact
+        id: build
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+
+          # Create an artifacts directory
+          setup: |
+            mkdir -p "${PWD}/artifacts"
+
+          # Mount the artifacts directory as /artifacts in the container
+          dockerRunArgs: |
+            --volume "${PWD}/artifacts:/artifacts"
+
+          # The shell to run commands with in the container
+          shell: /bin/bash
+
+          # Install some dependencies in the container. This speeds up builds if
+          # you are also using githubToken. Any dependencies installed here will
+          # be part of the container image that gets cached, so subsequent
+          # builds don't have to re-install them. The image layer is cached
+          # publicly in your project's package repository, so it is vital that
+          # no secrets are present in the container state or logs.
+          install: |
+            apt-get update -y -q
+            apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
+            apt-get install -y -q wget cmake build-essential g++-arm-linux-gnueabihf extra-cmake-modules cmake-extras libc6-dev libssl-dev
+            apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+
+                
+
+          # Produce a binary artifact and place it in the mounted volume
+          run: |
+            ver=$(cmake --version|awk '/version/ {print $3}')
+            export CFLAGS="-D_FILE_OFFSET_BITS=64"
+            export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
+            wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
+            tar -zxvf cmake-$ver.tar.gz
+            cd cmake-$ver
+            ./bootstrap
+            make
+            make install
+            cd ../mjpg-streamer-experimental
+            sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
+            sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
+            tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
+            dpkg-buildpackage -r -us -uc    
+
+      - name: Show the artifact
+        # Items placed in /artifacts in the container will be in
+        # ${PWD}/artifacts on the host.
+        run: |
+          mv mjpg-streamer_* ${PWD}/artifacts
+          mv mjpg-streamer-dbgsym_* ${PWD}/artifacts
+          mv mjpg-streamer-experimental.orig.tar.gz ${PWD}/artifacts
+          ls -l "${PWD}/artifacts"
+          
+      - name: Upload build 
+        uses: actions/upload-artifact@v2
+        with: 
+         name: "mjpg-streamer-${{ matrix.arch }}"
+         path: artifacts
