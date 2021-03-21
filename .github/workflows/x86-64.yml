@@ -35,7 +35,7 @@ jobs:
        dpkg-buildpackage -r -us -uc
     - name: makemake
       run: |
-        fakeroot
+        make
         make install DESTDIR=`pwd`/tempinstall
 #    - name: check
 #      run: lintian -v ../*.deb
