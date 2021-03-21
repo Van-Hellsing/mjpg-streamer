@@ -21,10 +21,10 @@ jobs:
     - name: install_1
       run: |
        apt update
-       apt-get install libsdl1.2-dev libjpeg62-turbo-dev
+       apt-get install -y libsdl1.2-dev libjpeg62-turbo-dev
       # libjpeg8-dev gcc g++
     - name: install_2
-      run: sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+      run: apt-get install -y debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
  #   - name: install_3
  #     run: sudo apt-get install dpkg debconf lintian
     - name: make
