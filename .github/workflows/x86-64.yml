@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: install_1
       run: |
-       apt search libjpeg
+     #  apt update
        sudo apt-get install libsdl1.2-dev libjpeg62-turbo-dev
       # libjpeg8-dev gcc g++
     - name: install_2
