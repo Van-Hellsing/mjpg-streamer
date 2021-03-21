@@ -2,7 +2,7 @@ name: amd64
 
 on:
   push:
-    branches: [ debianize ]
+    branches: [ master ]
 #  pull_request:
 #    branches: [ debianize ]
 
