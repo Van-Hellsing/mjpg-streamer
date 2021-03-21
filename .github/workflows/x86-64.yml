@@ -34,7 +34,9 @@ jobs:
        tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
        dpkg-buildpackage -r -us -uc
     - name: makemake
-      run: make
+      run: |
+        fakeroot
+        make install DESTDIR=`pwd`/tempinstall
 #    - name: check
 #      run: lintian -v ../*.deb
     - name: Creating out
