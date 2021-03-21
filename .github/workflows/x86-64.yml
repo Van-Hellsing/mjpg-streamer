@@ -20,8 +20,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: install_1
       run: |
-     #  apt update
-       sudo apt-get install libsdl1.2-dev libjpeg62-turbo-dev
+       apt update
+       apt-get install libsdl1.2-dev libjpeg62-turbo-dev
       # libjpeg8-dev gcc g++
     - name: install_2
       run: sudo apt-get install debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
