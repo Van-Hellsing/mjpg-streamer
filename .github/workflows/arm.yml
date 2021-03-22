@@ -20,8 +20,8 @@ jobs:
             #distro: buster
           - arch: armv6
             distro: buster
-          - arch: armv7
-            distro: buster
+          #- arch: armv7
+            #distro: buster
 
     steps:
       - uses: actions/checkout@v2.1.0
