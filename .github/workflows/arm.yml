@@ -59,7 +59,7 @@ jobs:
                 ;;
               armv7)
                 apt-get update -y -q
-                apt-get install -y -q wget
+                apt-get install -y -q wget gnupg
                 echo "deb http://archive.raspbian.org/raspbian buster main contrib non-free rpi firmware" >> /etc/apt/sources.list
                 wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
                 apt-get update -y -q
