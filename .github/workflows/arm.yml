@@ -50,19 +50,21 @@ jobs:
           # publicly in your project's package repository, so it is vital that
           # no secrets are present in the container state or logs.
           install: |
-            apt-get update -y -q
             case "${{ matrix.arch }}" in
               armv6)
                 ls -la /opt
                 ls -la /opt/vc
                 ls -l /opt/vc/include
+                apt-get update -y -q
                 apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin 
                 ;;
               armv7)
                 ls -l /usr/include
+                apt-get update -y -q
                 ;;
               aarch64
                 ls -l /usr/lnclude
+                apt-get update -y -q
                 ;;
               *)
                 apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
