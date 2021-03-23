@@ -31,6 +31,9 @@ jobs:
         with:
           arch: ${{ matrix.arch }}
           distro: ${{ matrix.distro }}
+          env: |
+            env_arch: ${{ matrix.arch }}
+            env_distro: ${{ matrix.distro }}
 
           # Create an artifacts directory
           setup: |
