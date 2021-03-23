@@ -50,23 +50,25 @@ jobs:
           # publicly in your project's package repository, so it is vital that
           # no secrets are present in the container state or logs.
           install: |
+            apt-get update -y -q
             case "${{ matrix.arch }}" in
               armv6)
-                apt-get update -y -q
+                #apt-get update -y -q
                 apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin 
                 ;;
               armv7)
-                apt-get update -y -q
+                #apt-get update -y -q
                 ;;
               aarch64)
-                apt-get update -y -q
+                #apt-get update -y -q
                 ;;
               *)
-                apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
-                apt-get install -y -q wget cmake build-essential g++-arm-linux-gnueabihf extra-cmake-modules cmake-extras libc6-dev libssl-dev
-                apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
-                ;;
+                 ;;
             esac
+            apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
+            apt-get install -y -q wget cmake build-essential g++-arm-linux-gnueabihf extra-cmake-modules cmake-extras libc6-dev libssl-dev
+            apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+               
             
             
           # Produce a binary artifact and place it in the mounted volume
