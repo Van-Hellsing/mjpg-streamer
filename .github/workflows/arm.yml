@@ -16,12 +16,12 @@ jobs:
     strategy:
       matrix:
         include:
-          #- arch: aarch64
-            #distro: buster
+          - arch: aarch64
+            distro: buster
           - arch: armv6
             distro: buster
-          #- arch: armv7
-            #distro: buster
+          - arch: armv7
+            distro: buster
 
     steps:
       - uses: actions/checkout@v2.1.0
@@ -51,18 +51,26 @@ jobs:
           # no secrets are present in the container state or logs.
           install: |
             apt-get update -y -q
-            apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin 
-            #libraspberrypi-doc
+            case "${{ matrix.arch }}" in
+              armv6)
+                ls -la /opt
+                ls -la /opt/vc
+                ls -l /opt/vc/include
+                apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin 
+                ;;
+              armv7)
+                ls -l /usr/include
+                ;;
+              aarch64
+                ls -l /usr/lnclude
+                ;;
+            esac
             apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
             apt-get install -y -q wget cmake build-essential g++-arm-linux-gnueabihf extra-cmake-modules cmake-extras libc6-dev libssl-dev
             apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
 
-                
-
           # Produce a binary artifact and place it in the mounted volume
           run: |
-            ls -la /opt
-            ls -la /opt/vc
             ver=$(cmake --version|awk '/version/ {print $3}')
             export CFLAGS="-D_FILE_OFFSET_BITS=64"
             export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
@@ -82,7 +90,6 @@ jobs:
         # Items placed in /artifacts in the container will be in
         # ${PWD}/artifacts on the host.
         run: |
-          ls -l /opt/vc/include
           mv mjpg-streamer_* ${PWD}/artifacts
           mv mjpg-streamer-dbgsym_* ${PWD}/artifacts
           mv mjpg-streamer-experimental.orig.tar.gz ${PWD}/artifacts
