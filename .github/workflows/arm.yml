@@ -58,8 +58,10 @@ jobs:
                 apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin 
                 ;;
               armv7)
+                apt-get update -y -q
+                apt-get install -y -q wget
                 echo "deb http://archive.raspbian.org/raspbian buster main contrib non-free rpi firmware" >> /etc/apt/sources.list
-                #wget -q -O - http://archive.raspberrypi.org/debian/raspberrypi.gpg.key | apt-key add -
+                wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
                 apt-get update -y -q
                 ;;
               aarch64)
