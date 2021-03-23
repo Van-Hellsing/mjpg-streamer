@@ -58,7 +58,7 @@ jobs:
                 ;;
               armv7)
                 deb http://archive.raspberrypi.org/debian/ buster main
-                #wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+                wget -q -O - http://archive.raspberrypi.org/debian/raspberrypi.gpg.key | apt-key add -
                 apt-get update -y -q
                 ;;
               aarch64)
