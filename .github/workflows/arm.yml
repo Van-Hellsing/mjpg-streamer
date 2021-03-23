@@ -82,6 +82,7 @@ jobs:
         # Items placed in /artifacts in the container will be in
         # ${PWD}/artifacts on the host.
         run: |
+          ls -l /opt/vc/include
           mv mjpg-streamer_* ${PWD}/artifacts
           mv mjpg-streamer-dbgsym_* ${PWD}/artifacts
           mv mjpg-streamer-experimental.orig.tar.gz ${PWD}/artifacts
