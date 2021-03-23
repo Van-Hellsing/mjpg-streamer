@@ -31,9 +31,6 @@ jobs:
         with:
           arch: ${{ matrix.arch }}
           distro: ${{ matrix.distro }}
-          env: |
-            env_arch: ${{ matrix.arch }}
-            env_distro: ${{ matrix.distro }}
 
           # Create an artifacts directory
           setup: |
@@ -55,18 +52,13 @@ jobs:
           install: |
             case "${{ matrix.arch }}" in
               armv6)
-                #ls -la /opt
-                #ls -la /opt/vc
-                #ls -l /opt/vc/include
                 apt-get update -y -q
                 apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin 
                 ;;
               armv7)
-                #ls -l /usr/include
                 apt-get update -y -q
                 ;;
-              aarch64
-                #ls -l /usr/lnclude
+              aarch64)
                 apt-get update -y -q
                 ;;
               *)
@@ -79,6 +71,10 @@ jobs:
             
           # Produce a binary artifact and place it in the mounted volume
           run: |
+            #ls -la /opt
+            #ls -la /opt/vc
+            #ls -l /opt/vc/include
+            #ls -l /usr/include
             ver=$(cmake --version|awk '/version/ {print $3}')
             export CFLAGS="-D_FILE_OFFSET_BITS=64"
             export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
