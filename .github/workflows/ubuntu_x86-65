@@ -1,4 +1,4 @@
-name: amd64
+name: ubuntu_amd64
 
 on:
   push:
