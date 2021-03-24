@@ -40,5 +40,5 @@ jobs:
     - name: Upload build 
       uses: actions/upload-artifact@v2
       with: 
-         name: "mjpg-streamer_debian-buster_${{ steps.ver.outputs.uname }}"
+         name: "mjpg-streamer_ubuntu-18.04_${{ steps.ver.outputs.uname }}"
          path: .
