@@ -46,7 +46,7 @@ systemctl daemon-reload
 if [ "$IS_UPGRADE" != "true" ]; then
     if command -v systemctl >/dev/null; then
         systemctl enable mjpg-streamer@.service
-        echo "KERNEL==\"video*\", SUBSYSTEM==\"video4linux\", SUBSYSTEMS==\"usb\", TAG+=\"systemd\"" > /etc/udev/rules.d/99-mjpg-streamer.rules
+        echo "KERNEL==\"video*\", SUBSYSTEM==\"video4linux\", SUBSYSTEMS==\"usb\", TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"mjpg-streamer@%n.service\"" > /etc/udev/rules.d/99-mjpg-streamer.rules
     fi
 fi
 
