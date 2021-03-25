@@ -36,6 +36,8 @@ case "$1" in
     ;;
 esac
 
+echo "KERNEL==\"video*\", SUBSYSTEM==\"video4linux\", SUBSYSTEMS==\"usb\", TAG+=\"systemd\"" > /etc/udev/rules.d/99-v4lsystemd.rules
+
 #??? to pick up /usr/lib/sysctl.d/elasticsearch.conf
 if command -v systemctl > /dev/null; then
     systemctl restart systemd-sysctl.service || true
