@@ -1,1 +1,1 @@
-userdel -fr mjpg-streamer
+userdel -fr mjpg_streamer video
