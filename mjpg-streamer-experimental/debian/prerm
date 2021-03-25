@@ -44,7 +44,7 @@ esac
 if [ "$STOP_REQUIRED" = "true" ]; then
     echo -n "Stopping mjpg-streamer service..."
     if command -v systemctl >/dev/null; then
-        systemctl --no-reload stop mjpg-streamer@.service || true
+        systemctl --no-reload stop mjpg-streamer@*.service || true
     fi
     echo " OK"
 fi
