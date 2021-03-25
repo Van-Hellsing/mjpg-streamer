@@ -1,2 +1,2 @@
 #!/bin/sh
-userdel -f mjpg_streamer
+userdel -fr mjpg_streamer
