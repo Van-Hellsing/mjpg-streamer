@@ -1,6 +1,8 @@
 [Unit]
 Description=A server for streaming Motion-JPEG from a video capture device
 After=network.target
+Wants=dev-video*.device
+After=dev-video*.device
 
 [Service]
 User=mjpg_streamer
