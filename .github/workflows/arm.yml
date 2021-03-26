@@ -68,7 +68,7 @@ jobs:
                 echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
                 apt-get update -y -q
-                apt install libraspberrypi-dev
+                apt-get install -y libraspberrypi-dev
                 ;;
               *)
                  ;;
