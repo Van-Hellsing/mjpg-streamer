@@ -70,7 +70,9 @@ jobs:
                 ls -l /usr/include
                 ;;
               aarch64)
-                #apt-get update -y -q
+                echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
+                apt-get update -y -q
+                apt install libraspberrypi-dev
                 ;;
               *)
                  ;;
