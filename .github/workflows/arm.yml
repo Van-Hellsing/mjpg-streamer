@@ -65,12 +65,12 @@ jobs:
                 echo "deb http://archive.raspbian.org/raspbian firmware " >> /etc/apt/sources.list
                 # non-free buster main contrib rpi
                 wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
-                ls -l /opt/vc/include)
-                ls -l /opt/vc/include/interface/vcos)
-                ls -l /opt/vc/include/interface/vcos/pthreads)
-                ls -l /opt/vc/include/interface/vmcs_host)
-                ls -l /opt/vc/include/interface/vmcs_host/linux)
-                ls -l /opt/vc/lib)
+                ls -l /opt/vc/include
+                ls -l /opt/vc/include/interface/vcos
+                ls -l /opt/vc/include/interface/vcos/pthreads
+                ls -l /opt/vc/include/interface/vmcs_host
+                ls -l /opt/vc/include/interface/vmcs_host/linux
+                ls -l /opt/vc/lib
                 #apt-get update -y -q
                 #apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin
                 ;;
@@ -82,6 +82,7 @@ jobs:
                 if [ "${{ matrix.arch }}"="aarch64" ]; then
                   ln -s /usr /opt/vc
                   ln -s /usr/lib /opt/vc/lib
+                  ls /etc/include/interface
                 fi
                 ;;
               *)
