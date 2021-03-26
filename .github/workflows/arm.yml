@@ -65,12 +65,6 @@ jobs:
                 echo "deb http://archive.raspbian.org/raspbian firmware " >> /etc/apt/sources.list
                 # non-free buster main contrib rpi
                 wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
-                ls -l /opt/vc/include
-                ls -l /opt/vc/include/interface/vcos
-                ls -l /opt/vc/include/interface/vcos/pthreads
-                ls -l /opt/vc/include/interface/vmcs_host
-                ls -l /opt/vc/include/interface/vmcs_host/linux
-                ls -l /opt/vc/lib
                 #apt-get update -y -q
                 #apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin
                 ;;
@@ -79,11 +73,11 @@ jobs:
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
                 #apt-get update -y -q
                 #apt-get install -y libraspberrypi-dev
-                if [ "${{ matrix.arch }}"="aarch64" ]; then
+                #if [ "${{ matrix.arch }}"="aarch64" ]; then
                   ln -s /usr /opt/vc
                   ln -s /usr/lib /opt/vc/lib
-                  ls /etc/include/interface
-                fi
+                  ls /usr/include
+                #fi
                 ;;
               *)
                  ;;
@@ -96,8 +90,8 @@ jobs:
             ver=$(cmake --version|awk '/version/ {print $3}')
             export CFLAGS="-D_FILE_OFFSET_BITS=64"
             export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
-            wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
-            tar -zxvf cmake-$ver.tar.gz
+            #wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
+            #tar -zxvf cmake-$ver.tar.gz
             cd cmake-$ver
             #./bootstrap
             #make
