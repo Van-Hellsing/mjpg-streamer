@@ -52,9 +52,13 @@ jobs:
           install: |
             apt-get update -y -q
             apt-get install -y -q wget gnupg
+            apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
+            apt-get install -y -q cmake build-essential g++-arm-linux-gnueabihf extra-cmake-modules cmake-extras libc6-dev libssl-dev
+            apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+            
             case "${{ matrix.arch }}" in
               armv6)
-                apt-get install -y libraspberrypi-dev
+                #apt-get install -y libraspberrypi-dev
                 #libraspberrypi0 libraspberrypi-bin 
                 ;;
               #armv7)
@@ -66,8 +70,8 @@ jobs:
               armv7|aarch64)
                 echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
-                apt-get update -y -q
-                apt-get install -y libraspberrypi-dev
+                #apt-get update -y -q
+                #apt-get install -y libraspberrypi-dev
                 if [ "${{ matrix.arch }}"="aarch64" ]; then
                   ln -s /usr /opt/vc
                 fi
@@ -79,9 +83,8 @@ jobs:
               *)
                  ;;
             esac
-            apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
-            apt-get install -y -q cmake build-essential g++-arm-linux-gnueabihf extra-cmake-modules cmake-extras libc6-dev libssl-dev
-            apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+            apt-get update -y -q
+            apt-get install -y -q libraspberrypi-dev
                
           # Produce a binary artifact and place it in the mounted volume
           run: |
