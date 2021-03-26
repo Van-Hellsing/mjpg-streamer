@@ -67,7 +67,7 @@ jobs:
                 wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
                 #apt-get update -y -q
                 #apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin
-                #;;
+                ;;
               aarch64)
                 echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
@@ -76,10 +76,6 @@ jobs:
                 if [ "${{ matrix.arch }}"="aarch64" ]; then
                   ln -s /usr /opt/vc
                 fi
-                echo "usr"
-                ls -l /usr
-                echo "/opt/vc"
-                ls -l /opt/vc
                 ;;
               *)
                  ;;
