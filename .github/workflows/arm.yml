@@ -59,7 +59,7 @@ jobs:
             case "${{ matrix.arch }}" in
               armv6)
                 #apt-get install -y libraspberrypi-dev
-                #libraspberrypi0 libraspberrypi-bin 
+                #libraspberrypi0 
                 ;;
               #armv7)
                 #echo "deb http://archive.raspbian.org/raspbian buster main contrib non-free rpi firmware" >> /etc/apt/sources.list
@@ -84,7 +84,7 @@ jobs:
                  ;;
             esac
             apt-get update -y -q
-            apt-get install -y -q libraspberrypi-dev
+            apt-get install -y -q libraspberrypi-dev libraspberrypi-bin 
                
           # Produce a binary artifact and place it in the mounted volume
           run: |
