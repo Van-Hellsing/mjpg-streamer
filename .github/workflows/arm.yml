@@ -69,7 +69,7 @@ jobs:
                 apt-get update -y -q
                 apt-get install -y libraspberrypi-dev
                 if [ "${{ matrix.arch }}"="aarch64" ]; then
-                  ln -s /usr/ /opt/vc/
+                  ln -s /usr /opt/vc
                 fi
                 echo "usr"
                 ls -l /usr
