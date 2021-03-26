@@ -77,6 +77,8 @@ jobs:
                   ln -s /usr /opt/vc
                   ln -s /usr/lib /opt/vc/lib
                   ls /usr/include
+                  echo "find"
+                  find / -inane "libmmal*"
                 #fi
                 ;;
               *)
