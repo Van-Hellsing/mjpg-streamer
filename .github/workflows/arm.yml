@@ -62,9 +62,15 @@ jobs:
                 #libraspberrypi0 
                 ;;
               armv7)
-                echo "deb http://archive.raspbian.org/raspbian buster main contrib rpi firmware " >> /etc/apt/sources.list
-                # non-free  
+                echo "deb http://archive.raspbian.org/raspbian firmware " >> /etc/apt/sources.list
+                # non-free buster main contrib rpi
                 wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
+                ls -l /opt/vc/include)
+                ls -l /opt/vc/include/interface/vcos)
+                ls -l /opt/vc/include/interface/vcos/pthreads)
+                ls -l /opt/vc/include/interface/vmcs_host)
+                ls -l /opt/vc/include/interface/vmcs_host/linux)
+                ls -l /opt/vc/lib)
                 #apt-get update -y -q
                 #apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin
                 ;;
