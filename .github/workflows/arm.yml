@@ -18,8 +18,8 @@ jobs:
         include:
           - arch: aarch64
             distro: buster
-          - arch: armv6
-            distro: buster
+          #- arch: armv6
+            #distro: buster
           - arch: armv7
             distro: buster
 
@@ -61,13 +61,14 @@ jobs:
                 #apt-get install -y libraspberrypi-dev
                 #libraspberrypi0 
                 ;;
-              #armv7)
-                #echo "deb http://archive.raspbian.org/raspbian buster main contrib non-free rpi firmware" >> /etc/apt/sources.list
-                #wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
+              armv7)
+                echo "deb http://archive.raspbian.org/raspbian buster main" >> /etc/apt/sources.list
+                #contrib non-free rpi firmware
+                wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
                 #apt-get update -y -q
                 #apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin
                 #;;
-              armv7|aarch64)
+              aarch64)
                 echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
                 #apt-get update -y -q
@@ -94,9 +95,9 @@ jobs:
             wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
             tar -zxvf cmake-$ver.tar.gz
             cd cmake-$ver
-            ./bootstrap
-            make
-            make install
+            #./bootstrap
+            #make
+            #make install
             cd ../mjpg-streamer-experimental
             #sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
             #sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
