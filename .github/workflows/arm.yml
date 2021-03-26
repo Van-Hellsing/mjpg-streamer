@@ -54,7 +54,8 @@ jobs:
             apt-get install -y -q wget gnupg
             case "${{ matrix.arch }}" in
               armv6)
-                apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin 
+                apt-get install -y libraspberrypi-dev
+                #libraspberrypi0 libraspberrypi-bin 
                 ;;
               #armv7)
                 #echo "deb http://archive.raspbian.org/raspbian buster main contrib non-free rpi firmware" >> /etc/apt/sources.list
@@ -67,6 +68,13 @@ jobs:
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
                 apt-get update -y -q
                 apt-get install -y libraspberrypi-dev
+                if [ "${{ matrix.arch }}"="aarch64" ]; then
+                  ln -s /usr/ /opt/vc/
+                fi
+                echo "usr"
+                ls -l /usr
+                echo "/opt/vc"
+                ls -l /opt/vc
                 ;;
               *)
                  ;;
@@ -75,8 +83,6 @@ jobs:
             apt-get install -y -q cmake build-essential g++-arm-linux-gnueabihf extra-cmake-modules cmake-extras libc6-dev libssl-dev
             apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
                
-            
-            
           # Produce a binary artifact and place it in the mounted volume
           run: |
             ver=$(cmake --version|awk '/version/ {print $3}')
