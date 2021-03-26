@@ -62,8 +62,8 @@ jobs:
                 #libraspberrypi0 
                 ;;
               armv7)
-                echo "deb http://archive.raspbian.org/raspbian buster main contrib rpi" >> /etc/apt/sources.list
-                # non-free  firmware
+                echo "deb http://archive.raspbian.org/raspbian buster main contrib rpi firmware " >> /etc/apt/sources.list
+                # non-free  
                 wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
                 #apt-get update -y -q
                 #apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin
@@ -75,6 +75,7 @@ jobs:
                 #apt-get install -y libraspberrypi-dev
                 if [ "${{ matrix.arch }}"="aarch64" ]; then
                   ln -s /usr /opt/vc
+                  ln -s /usr/lib /opt/vc/lib
                 fi
                 ;;
               *)
