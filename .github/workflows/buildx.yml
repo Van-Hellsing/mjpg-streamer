@@ -26,5 +26,11 @@ jobs:
           apt update
           apt-get install -y libsdl1.2-dev libjpeg62-turbo-dev
           apt-get install -y debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
-  
+      - 
+        name: build
+        run: |
+          #sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
+          #sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
+          tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
+          dpkg-buildpackage -r -us -uc
         
