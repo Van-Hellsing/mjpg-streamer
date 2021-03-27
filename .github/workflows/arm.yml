@@ -72,6 +72,11 @@ jobs:
                 apt-get install git
                 echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
+                mkdir userland
+                cd userland
+                git clone https://github.com/raspberrypi/userland.git . 
+                ./buildme --aarch64
+                cd ..
                 #apt-get update -y -q
                 #apt-get install -y libraspberrypi-dev
                 #if [ "${{ matrix.arch }}"="aarch64" ]; then
