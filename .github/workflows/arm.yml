@@ -97,11 +97,11 @@ jobs:
             export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
             #wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
             #tar -zxvf cmake-$ver.tar.gz
-            cd cmake-$ver
+            #cd cmake-$ver
             #./bootstrap
             #make
             #make install
-            cd ../mjpg-streamer-experimental
+            #cd ../mjpg-streamer-experimental
             #sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
             #sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
             tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
