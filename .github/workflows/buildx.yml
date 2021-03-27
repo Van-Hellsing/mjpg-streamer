@@ -20,3 +20,11 @@ jobs:
       -
         name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
+      -
+        name: apt
+        run: |
+          apt update
+          apt-get install -y libsdl1.2-dev libjpeg62-turbo-dev
+          apt-get install -y debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+  
+        
