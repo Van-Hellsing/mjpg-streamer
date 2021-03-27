@@ -69,23 +69,21 @@ jobs:
                 #apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin
                 ;;
               aarch64)
+                apt-get install git
                 echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
                 #apt-get update -y -q
                 #apt-get install -y libraspberrypi-dev
                 #if [ "${{ matrix.arch }}"="aarch64" ]; then
-                  ln -s /usr /opt/vc
-                  ln -s /usr/lib /opt/vc/lib
-                  ls /usr/include
-                  echo "find"
-                  find / -inane "libmmal*"
+                
                 #fi
                 ;;
               *)
                  ;;
             esac
             apt-get update -y -q
-            apt-get install -y -q libraspberrypi-dev libraspberrypi-bin 
+            apt-get install -y -q libraspberrypi-dev 
+            #libraspberrypi-bin 
                
           # Produce a binary artifact and place it in the mounted volume
           run: |
