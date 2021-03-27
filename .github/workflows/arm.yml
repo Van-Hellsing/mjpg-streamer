@@ -69,7 +69,7 @@ jobs:
                 #apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin
                 ;;
               aarch64)
-                apt-get install git
+                apt-get install git sudo
                 echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
                 mkdir userland
