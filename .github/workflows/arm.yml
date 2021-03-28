@@ -66,6 +66,7 @@ jobs:
                 ;;
               aarch64)
                 apt-get install -y git sudo
+                apt-get install -y libavformat-dev libavcodec-dev libavutil-dev libswscale-dev libavdevice-dev
                 echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
                 #mkdir userland
@@ -95,7 +96,7 @@ jobs:
                 ./bootstrap
                 make
                 make install
-                cd ../mjpg-streamer-experimental
+                cd ..
                 ;;
               armv7)
                 ;;
@@ -105,6 +106,7 @@ jobs:
                 ;;
             esac
             
+            cd mjpg-streamer-experimental
             #sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
             #sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
             tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
