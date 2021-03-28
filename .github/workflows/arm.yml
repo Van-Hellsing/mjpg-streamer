@@ -16,8 +16,8 @@ jobs:
     strategy:
       matrix:
         include:
-          #- arch: aarch64
-            #distro: buster
+          - arch: aarch64
+            distro: buster
           - arch: armv6
             distro: buster
           - arch: armv7
@@ -58,51 +58,53 @@ jobs:
             
             case "${{ matrix.arch }}" in
               armv6)
-                #apt-get install -y libraspberrypi-dev
-                #libraspberrypi0 
                 ;;
               armv7)
                 echo "deb http://archive.raspbian.org/raspbian buster firmware" >> /etc/apt/sources.list
                 # non-free main contrib rpi
                 wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
-                #apt-get update -y -q
-                #apt-get install -y libraspberrypi0 libraspberrypi-dev libraspberrypi-bin
                 ;;
               aarch64)
                 apt-get install -y git sudo
                 echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
-                mkdir userland
-                cd userland
-                git clone https://github.com/raspberrypi/userland.git . 
-                ./buildme --aarch64
-                cd ..
-                #apt-get update -y -q
-                #apt-get install -y libraspberrypi-dev
-                #if [ "${{ matrix.arch }}"="aarch64" ]; then
-                
-                #fi
+                #mkdir userland
+                #cd userland
+                #git clone https://github.com/raspberrypi/userland.git . 
+                #./buildme --aarch64
+                #cd ..
                 ;;
               *)
                  ;;
             esac
+            
             apt-get update -y -q
             apt-get install -y -q libraspberrypi-dev 
-            #libraspberrypi-bin 
+            #libraspberrypi-bin libraspberrypi0
                
           # Produce a binary artifact and place it in the mounted volume
           run: |
-            ver=$(cmake --version|awk '/version/ {print $3}')
-            export CFLAGS="-D_FILE_OFFSET_BITS=64"
-            export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
-            #wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
-            #tar -zxvf cmake-$ver.tar.gz
-            #cd cmake-$ver
-            #./bootstrap
-            #make
-            #make install
-            #cd ../mjpg-streamer-experimental
-            cd mjpg-streamer-experimental
+            case "${{ matrix.arch }}" in
+              armv6)
+                ver=$(cmake --version|awk '/version/ {print $3}')
+                export CFLAGS="-D_FILE_OFFSET_BITS=64"
+                export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
+                wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
+                tar -zxvf cmake-$ver.tar.gz
+                cd cmake-$ver
+                ./bootstrap
+                make
+                make install
+                cd ../mjpg-streamer-experimental
+                ;;
+              armv7)
+                ;;
+              aarch64)
+                ;;
+              *)
+                ;;
+            esac
+            
             #sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
             #sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
             tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
@@ -120,5 +122,5 @@ jobs:
       - name: Upload build 
         uses: actions/upload-artifact@v2
         with: 
-         name: "mjpg-streamer-${{ matrix.arch }}"
+         name: "mjpg-streamer_debian-buster_${{ matrix.arch }}"
          path: artifacts
