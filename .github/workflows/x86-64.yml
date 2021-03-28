@@ -27,6 +27,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: install
         run: |
+         export DEBIAN_FRONTEND=noninteractive
          apt-get update
          apt-get install -y -q libsdl1.2-dev
        
