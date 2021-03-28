@@ -20,45 +20,43 @@ jobs:
             distro: debian:buster
           - name: ubuntu
             distro: ubuntu:20.04
-            
-    steps:
+    #steps:
     container:
       image: ${{ matrix.distro }}
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: install
-      run: |
-       apt-get update
-       apt-get install -y -q libsdl1.2-dev
+    steps: 
+      - uses: actions/checkout@v2
+      - name: install
+        run: |
+         apt-get update
+         apt-get install -y -q libsdl1.2-dev
        
-        case "${{ matrix.distr }}" in
-          "debian:buster")
-            apt-get install -y -q libjpeg8-dev
-            ;;
-          "ubuntu:20.04")
-            apt-get install -y -q libjpeg62-turbo-dev
-            ;;
-          *)
-            ;;
-        esac
+         case "${{ matrix.distr }}" in
+           "debian:buster")
+              apt-get install -y -q libjpeg8-dev
+              ;;
+            "ubuntu:20.04")
+              apt-get install -y -q libjpeg62-turbo-dev
+              ;;
+            *)
+              ;;
+          esac
         
-       apt-get install -y -q debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
-    - name: build
-      run: |
-       #sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
-       #sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
-       tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
-       dpkg-buildpackage -r -us -uc
-    - name: Creating out
-      id: ver
-      run: |
-       rm -r ../mjpg-streamer-experimental ../.g* ../README.md
-       echo ::set-output name=uname::$(uname -m)
-       #echo "The uname output was ${{ steps.ver.outputs.uname }}"
-       ls -l ..
-    - name: Upload build 
-      uses: actions/upload-artifact@v2
-      with: 
+         apt-get install -y -q debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
+      - name: build
+        run: |
+          #sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
+          #sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
+          tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
+          dpkg-buildpackage -r -us -uc
+      - name: Creating out
+        id: ver
+        run: |
+         rm -r ../mjpg-streamer-experimental ../.g* ../README.md
+         echo ::set-output name=uname::$(uname -m)
+         #echo "The uname output was ${{ steps.ver.outputs.uname }}"
+         ls -l ..
+      - name: Upload build 
+        uses: actions/upload-artifact@v2
+        with: 
          name: "mjpg-streamer_${{ matrix.distr }}_${{ steps.ver.outputs.uname }}"
          path: .
