@@ -58,6 +58,16 @@ jobs:
             
             case "${{ matrix.arch }}" in
               armv6)
+                ver=$(cmake --version|awk '/version/ {print $3}')
+                export CFLAGS="-D_FILE_OFFSET_BITS=64"
+                export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
+                wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
+                tar -zxvf cmake-$ver.tar.gz
+                cd cmake-$ver
+                ./bootstrap
+                make
+                make install
+                cd ..
                 ;;
               armv7)
                 echo "deb http://archive.raspbian.org/raspbian buster firmware" >> /etc/apt/sources.list
@@ -74,6 +84,7 @@ jobs:
                 git clone https://github.com/raspberrypi/userland.git . 
                 ./buildme --aarch64
                 cd ..
+                ln -s /usr/lib /opt/vc/lib
                 ;;
               *)
                  ;;
@@ -85,27 +96,6 @@ jobs:
                
           # Produce a binary artifact and place it in the mounted volume
           run: |
-            case "${{ matrix.arch }}" in
-              armv6)
-                ver=$(cmake --version|awk '/version/ {print $3}')
-                export CFLAGS="-D_FILE_OFFSET_BITS=64"
-                export CXXFLAGS="-D_FILE_OFFSET_BITS=64"
-                wget https://github.com/Kitware/CMake/releases/download/v${ver}/cmake-$ver.tar.gz
-                tar -zxvf cmake-$ver.tar.gz
-                cd cmake-$ver
-                ./bootstrap
-                make
-                make install
-                cd ..
-                ;;
-              armv7)
-                ;;
-              aarch64)
-                ;;
-              *)
-                ;;
-            esac
-            
             cd mjpg-streamer-experimental
             #sed -i 's/\${OpenCV_VERSION_MAJOR} EQUAL 3)/"\${OpenCV_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/CMakeLists.txt
             #sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
