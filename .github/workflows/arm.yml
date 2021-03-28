@@ -80,8 +80,8 @@ jobs:
             esac
             
             apt-get update -y -q
-            apt-get install -y -q libraspberrypi-dev 
-            #libraspberrypi-bin libraspberrypi0
+            apt-get install -y -q libraspberrypi-dev libraspberrypi-bin 
+            #libraspberrypi0
                
           # Produce a binary artifact and place it in the mounted volume
           run: |
