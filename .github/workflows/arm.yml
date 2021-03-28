@@ -86,6 +86,15 @@ jobs:
                 cd ..
                 #ln -s /usr/lib /opt/vc/lib
                 
+                echo "/usr"
+                ls -l /usr
+                echo "/usr/lib"
+                ls -l /usr/lib
+                echo "/usr/include/interface"
+                ls -l /usr/include/interface
+                
+                echo "/opt/vc"
+                ls -l /opt/vc 
                 echo "/opt/vc/lib"
                 ls -l /opt/vc/lib
                 echo "/opt/vc/include"
