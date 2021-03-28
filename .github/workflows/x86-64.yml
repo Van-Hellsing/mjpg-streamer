@@ -26,8 +26,19 @@ jobs:
     - name: install
       run: |
        apt-get update
-       apt-get install -y -q libsdl1.2-dev 
-       libjpeg62-turbo-dev libjpeg8-dev
+       apt-get install -y -q libsdl1.2-dev
+       
+        case "${{ matrix.distr }}" in
+          debian:buster )
+            apt-get install -y -q libjpeg8-dev
+            ;;
+          ubuntu:20.04)
+            apt-get install -y -q libjpeg62-turbo-dev
+            ;;
+          *)
+            ;;
+        esac
+        
        apt-get install -y -q debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
     - name: build
       run: |
