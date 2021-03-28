@@ -90,8 +90,8 @@ jobs:
                 ls -l /usr
                 echo "/usr/lib"
                 ls -l /usr/lib
-                echo "/usr/include/interface"
-                ls -l /usr/include/interface
+                #echo "/usr/include/interface"
+                #ls -l /usr/include/interface
                 
                 echo "/opt/vc"
                 ls -l /opt/vc 
