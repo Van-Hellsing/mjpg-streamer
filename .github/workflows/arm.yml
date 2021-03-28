@@ -51,9 +51,8 @@ jobs:
           # no secrets are present in the container state or logs.
           install: |
             apt-get update -y -q
-            
             apt-get install -y -q libjpeg62-turbo-dev libsdl1.2-dev
-            apt-get install -y -q cmake build-essential
+            apt-get install -y -q cmake build-essential wget
             apt-get install -y -q debhelper devscripts libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
             
             case "${{ matrix.arch }}" in
@@ -71,13 +70,13 @@ jobs:
                 cd ..
                 ;;
               armv7)
-                apt-get install -y -q wget gnupg
+                apt-get install -y -q gnupg
                 echo "deb http://archive.raspbian.org/raspbian buster firmware" >> /etc/apt/sources.list
                 # non-free main contrib rpi
                 wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
                 ;;
               aarch64)
-                apt-get install -y -q wget gnupg
+                apt-get install -y -q gnupg
                 #apt-get install -y git sudo
                 #apt-get install -y libavformat-dev libavcodec-dev libavutil-dev libswscale-dev libavdevice-dev
                 #apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
