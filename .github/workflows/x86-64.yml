@@ -30,16 +30,16 @@ jobs:
          apt-get update
          apt-get install -y -q libsdl1.2-dev
        
-         case "${{ matrix.distr }}" in
-           "debian:buster")
+         case "${{ matrix.name }}" in
+           debian)
               apt-get install -y -q libjpeg8-dev
               ;;
-            "ubuntu:20.04")
+           ubuntu)
               apt-get install -y -q libjpeg62-turbo-dev
               ;;
-            *)
+           *)
               ;;
-          esac
+         esac
         
          apt-get install -y -q debhelper devscripts cmake libgphoto2-dev libopencv-dev python3-numpy python3-dev libzmq3-dev libprotobuf-c-dev protobuf-c-compiler
       - name: build
