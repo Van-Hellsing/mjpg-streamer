@@ -69,11 +69,11 @@ jobs:
                 apt-get install -y libavformat-dev libavcodec-dev libavutil-dev libswscale-dev libavdevice-dev
                 echo "deb http://archive.raspberrypi.org/debian/ buster main" >> /etc/apt/sources.list.d/raspi.list
                 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
-                #mkdir userland
-                #cd userland
-                #git clone https://github.com/raspberrypi/userland.git . 
-                #./buildme --aarch64
-                #cd ..
+                mkdir userland
+                cd userland
+                git clone https://github.com/raspberrypi/userland.git . 
+                ./buildme --aarch64
+                cd ..
                 ;;
               *)
                  ;;
