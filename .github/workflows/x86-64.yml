@@ -32,10 +32,10 @@ jobs:
        
          case "${{ matrix.name }}" in
            debian)
-              apt-get install -y -q libjpeg8-dev
+              apt-get install -y -q libjpeg62-turbo-dev
               ;;
            ubuntu)
-              apt-get install -y -q libjpeg62-turbo-dev
+              apt-get install -y -q libjpeg8-dev
               ;;
            *)
               ;;
