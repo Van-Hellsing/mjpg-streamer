@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        distr: [debian:buster, ubuntu:20.04]
+        distr: ["debian:buster", "ubuntu:20.04"]
     steps:
     
     container:
@@ -29,10 +29,10 @@ jobs:
        apt-get install -y -q libsdl1.2-dev
        
         case "${{ matrix.distr }}" in
-          debian:buster )
+          "debian:buster")
             apt-get install -y -q libjpeg8-dev
             ;;
-          ubuntu:20.04)
+          "ubuntu:20.04")
             apt-get install -y -q libjpeg62-turbo-dev
             ;;
           *)
