@@ -1,4 +1,4 @@
-name: amd64
+name: x86-64
 
 on:
   push:
