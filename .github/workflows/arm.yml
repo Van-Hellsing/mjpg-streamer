@@ -84,7 +84,20 @@ jobs:
                 git clone https://github.com/raspberrypi/userland.git . 
                 ./buildme --aarch64
                 cd ..
-                ln -s /usr/lib /opt/vc/lib
+                #ln -s /usr/lib /opt/vc/lib
+                
+                echo "/opt/vc/lib"
+                ls -l /opt/vc/lib
+                echo "/opt/vc/include"
+                ls -l /opt/vc/include
+                echo "/opt/vc/include/interface/vcos"
+                ls -l /opt/vc/include/interface/vcos
+                echo "/opt/vc/include/interface/vcos/pthreads"
+                ls -l /opt/vc/include/interface/vcos/pthreads
+                echo "/opt/vc/include/interface/vmcs_host"
+                ls -l /opt/vc/include/interface/vmcs_host
+                echo "/opt/vc/include/interface/vmcs_host/linux"
+                ls -l /opt/vc/include/interface/vmcs_host/linux
                 ;;
               *)
                  ;;
