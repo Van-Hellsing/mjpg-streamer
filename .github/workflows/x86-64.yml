@@ -15,11 +15,15 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        distr: ["debian:buster", "ubuntu:20.04"]
+        include:
+          - name: debian
+            distro: debian:buster
+          - name: ubuntu
+            distro: ubuntu:20.04
+            
     steps:
-    
     container:
-      image: ${{ matrix.distr }}
+      image: ${{ matrix.distro }}
 
     steps:
     - uses: actions/checkout@v2
