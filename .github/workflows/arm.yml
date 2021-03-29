@@ -3,8 +3,6 @@ name: arm
 on:
   push:
     branches: [ master ]
-#  pull_request:
-#    branches: [ debianize ]
 
 jobs:
   build_job:
@@ -116,5 +114,5 @@ jobs:
       - name: Upload build 
         uses: actions/upload-artifact@v2
         with: 
-         name: "mjpg-streamer_debian-buster_${{ matrix.arch }}"
+         name: "mjpg-streamer_${{ matrix.distro }}_${{ matrix.arch }}"
          path: artifacts
