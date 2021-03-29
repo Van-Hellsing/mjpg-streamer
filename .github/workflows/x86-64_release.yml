@@ -58,15 +58,15 @@ jobs:
         run: |
          cd ..
          rm -r mjpg-streamer-experimental .g* README.md
-         echo ::set-output name=uname::$(uname -m)
+         #echo ::set-output name=uname::$(uname -m)
          #echo "The uname output was ${{ steps.ver.outputs.uname }}"
          ls -l ..
-         zip mjpg-streamer_${{ matrix.name }}_${{ steps.ver.outputs.uname }} ./*
+         zip mjpg-streamer_${{ matrix.name }}_amd64 ./*
          
       - name: Upload build 
         uses: actions/upload-artifact@v2
         with: 
-         name: "mjpg-streamer_${{ matrix.name }}_${{ steps.ver.outputs.uname }}"
+         name: "mjpg-streamer_${{ matrix.name }}_amd64"
          path: .
          
       - uses: ncipollo/release-action@v1
