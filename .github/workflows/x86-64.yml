@@ -53,12 +53,15 @@ jobs:
       - name: Creating artifact
         id: ver
         run: |
-         rm -r ../mjpg-streamer-experimental ../.g* ../README.md
+         cd ..
+         rm -r mjpg-streamer-experimental .g* README.md
          echo ::set-output name=uname::$(uname -m)
          #echo "The uname output was ${{ steps.ver.outputs.uname }}"
+         pwd
          ls -la ..
          zip --help
-         zip mjpg-streamer.zip ./
+         zip -m mjpg-streamer.zip ./*
+         ls -la
          
       - name: Upload build 
         uses: actions/upload-artifact@v2
