@@ -70,7 +70,8 @@ jobs:
          
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: *
+          allowUpdates: true
+          artifacts: ./*
           bodyFile: "body.md"
           token: ${{ secrets.GITHUB_TOKEN }}
           
