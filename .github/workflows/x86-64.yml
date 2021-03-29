@@ -3,8 +3,6 @@ name: x86-64
 on:
   push:
     branches: [ master ]
-#  pull_request:
-#    branches: [ debianize ]
 
 defaults:
   run:
@@ -55,11 +53,10 @@ jobs:
         run: |
          cd ..
          rm -r mjpg-streamer-experimental .g* README.md
-         echo ::set-output name=uname::$(uname -m)
          ls -l
          
       - name: Upload build 
         uses: actions/upload-artifact@v2
         with: 
-         name: "mjpg-streamer_${{ matrix.name }}_${{ steps.ver.outputs.uname }}"
+         name: "mjpg-streamer_${{ matrix.name }}_amd64"
          path: .
