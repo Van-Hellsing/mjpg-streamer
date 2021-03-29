@@ -65,12 +65,12 @@ jobs:
          name: "mjpg-streamer_${{ matrix.name }}_${{ steps.ver.outputs.uname }}"
          path: .
          
-      - name: Read ChangeLog
-        uses: mindsers/changelog-reader-action@v2
-        id: changelog
-        with:
-          validation_depth: 1
-          path: ./CHANGELOG.md
+      #- name: Read ChangeLog
+        #uses: mindsers/changelog-reader-action@v2
+        #id: changelog
+        #with:
+          #validation_depth: 1
+          #path: ./CHANGELOG.md
           
       - name: Create Release
         id: create_release
@@ -78,8 +78,8 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
-          body: |
-            ${{ steps.changelog.outputs.changes }}
+          #body: |
+          #  ${{ steps.changelog.outputs.changes }}
           draft: true
           prerelease: false
          
