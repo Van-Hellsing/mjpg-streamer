@@ -49,6 +49,7 @@ jobs:
           #sed -i 's/\${PYTHON_VERSION_MAJOR} EQUAL 3)/"\${PYTHON_VERSION_MAJOR} EQUAL 3")/' plugins/input_opencv/filters/cvfilter_py/CMakeLists.txt
           tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
           dpkg-buildpackage -r -us -uc
+          
       - name: Creating out
         id: ver
         run: |
@@ -56,8 +57,10 @@ jobs:
          echo ::set-output name=uname::$(uname -m)
          #echo "The uname output was ${{ steps.ver.outputs.uname }}"
          ls -l ..
+         zip mjpg-streamer.zip *
+         
       - name: Upload build 
         uses: actions/upload-artifact@v2
         with: 
          name: "mjpg-streamer_${{ matrix.name }}_${{ steps.ver.outputs.uname }}"
-         path: .
+         path: mjpg-streamer.zip
