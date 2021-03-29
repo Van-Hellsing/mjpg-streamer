@@ -57,7 +57,7 @@ jobs:
          echo ::set-output name=uname::$(uname -m)
          #echo "The uname output was ${{ steps.ver.outputs.uname }}"
          ls -l ..
-         zip mjpg-streamer.zip mjpg*
+         zip mjpg-streamer.zip ./
          
       - name: Upload build 
         uses: actions/upload-artifact@v2
