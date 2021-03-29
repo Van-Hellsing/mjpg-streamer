@@ -50,14 +50,15 @@ jobs:
           tar -zcf ../mjpg-streamer-experimental.orig.tar.gz ../mjpg-streamer-experimental
           dpkg-buildpackage -r -us -uc
           
-      - name: Creating out
+      - name: Creating artifact
         id: ver
         run: |
          rm -r ../mjpg-streamer-experimental ../.g* ../README.md
          echo ::set-output name=uname::$(uname -m)
          #echo "The uname output was ${{ steps.ver.outputs.uname }}"
          ls -la ..
-         zip mjpg-streamer.zip ./*
+         zip --help
+         zip mjpg-streamer.zip ./
          
       - name: Upload build 
         uses: actions/upload-artifact@v2
