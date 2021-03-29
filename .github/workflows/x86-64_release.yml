@@ -6,6 +6,9 @@ on:
     types: [published]
   push:
     branches: [ master ]
+    tags:
+    - '*'
+    
 defaults:
   run:
     working-directory: ./mjpg-streamer-experimental
