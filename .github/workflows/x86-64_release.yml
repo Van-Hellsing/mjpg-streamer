@@ -32,7 +32,7 @@ jobs:
         run: |
          export DEBIAN_FRONTEND=noninteractive
          apt-get update
-         apt-get install -y -q libsdl1.2-dev
+         apt-get install -y -q libsdl1.2-dev zip
        
          case "${{ matrix.name }}" in
            debian)
