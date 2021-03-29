@@ -61,7 +61,7 @@ jobs:
          echo ::set-output name=uname::$(uname -m)
          #echo "The uname output was ${{ steps.ver.outputs.uname }}"
          ls -l ..
-         zip mjpg-streamer_${{ matrix.name }} ./*
+         zip mjpg-streamer_${{ matrix.name }}_${{ steps.ver.outputs.uname }} ./*
          
       - name: Upload build 
         uses: actions/upload-artifact@v2
@@ -71,7 +71,7 @@ jobs:
          
       - uses: ncipollo/release-action@v1
         with:
-          allowUpdates: true
+          #allowUpdates: true
           artifacts: ./*.zip
           bodyFile: "CHANGELOG.md"
           token: ${{ secrets.GITHUB_TOKEN }}
