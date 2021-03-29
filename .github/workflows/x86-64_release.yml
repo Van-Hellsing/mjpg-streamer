@@ -78,8 +78,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
-          #body: |
-          #  ${{ steps.changelog.outputs.changes }}
+          body_path: ./CHANGELOG.md
           draft: true
           prerelease: false
          
