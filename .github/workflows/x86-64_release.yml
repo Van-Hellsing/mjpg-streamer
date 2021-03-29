@@ -65,31 +65,9 @@ jobs:
          name: "mjpg-streamer_${{ matrix.name }}_${{ steps.ver.outputs.uname }}"
          path: .
          
-      #- name: Read ChangeLog
-        #uses: mindsers/changelog-reader-action@v2
-        #id: changelog
-        #with:
-          #validation_depth: 1
-          #path: ./CHANGELOG.md
-          
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+      - uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          body_path: ./CHANGELOG.md
-          draft: true
-          prerelease: false
-         
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        with:
-          #upload_url: ${{ github.event.release.upload_url }}
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./
-          asset_name: mjpg-streamer_${{ github.event.release.tag_name }}_x86-64_${{steps.date.outputs.date}}.tar.gz
-          asset_content_type: application/gzip
-          
+          artifacts: "release.tar.gz,foo/*.txt"
+          bodyFile: "body.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
           
