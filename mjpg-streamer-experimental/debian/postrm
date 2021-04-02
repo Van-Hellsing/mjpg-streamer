@@ -57,7 +57,7 @@ if [ "$REMOVE_DIRS" = "true" ]; then
     
     if [ -f /etc/udev/rules.d/99-mjpg-streamer.rules ]; then
         echo -n "Deleting udev mjpg-streamer.rules..."
-        rm -rf /var/run/mjpg-streamer
+        rm -rf /etc/udev/rules.d/99-mjpg-streamer.rules
         echo " OK"
     fi
 fi
