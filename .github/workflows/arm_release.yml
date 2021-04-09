@@ -127,6 +127,6 @@ jobs:
         with:
           allowUpdates: true
           #artifacts: ./*.zip
-          artifacts: zip/*.zip
+          artifacts: zip/*
           bodyFile: "CHANGELOG.md"
           token: ${{ secrets.GITHUB_TOKEN }}
