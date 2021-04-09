@@ -112,9 +112,11 @@ jobs:
           mv mjpg-streamer-dbgsym_* ${PWD}/artifacts
           mv mjpg-streamer-experimental.orig.tar.gz ${PWD}/artifacts
           ls -l "${PWD}/artifacts"
-          zip mjpg-streamer_${{ matrix.distro }}_${{ matrix.arch }} ./*
+          zip mjpg-streamer_${{ matrix.distro }}_${{ matrix.arch }} ./artifacts/*
           ls -la
           mv *.zip zip/
+          ls -la artifacts
+          ls -la zip
           
           
       - name: Upload build 
