@@ -110,7 +110,7 @@ jobs:
           mv mjpg-streamer-experimental.orig.tar.gz ${PWD}/artifacts
           ls -l "${PWD}/artifacts"
           zip mjpg-streamer_${{ matrix.distro }}_${{ matrix.arch }} ./*
-         
+          ls -la
           
           
       - name: Upload build 
@@ -122,6 +122,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: ./*.zip
+          #artifacts: ./*.zip
+          artifacts: artifacts
           bodyFile: "CHANGELOG.md"
           token: ${{ secrets.GITHUB_TOKEN }}
