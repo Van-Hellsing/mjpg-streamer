@@ -32,10 +32,13 @@ jobs:
           # Create an artifacts directory
           setup: |
             mkdir -p "${PWD}/artifacts"
+            mkdir -p "${PWD}/zip"
 
           # Mount the artifacts directory as /artifacts in the container
           dockerRunArgs: |
             --volume "${PWD}/artifacts:/artifacts"
+            --volume "${PWD}/zip:/zip"
+
 
           # The shell to run commands with in the container
           shell: /bin/bash
@@ -111,6 +114,7 @@ jobs:
           ls -l "${PWD}/artifacts"
           zip mjpg-streamer_${{ matrix.distro }}_${{ matrix.arch }} ./*
           ls -la
+          mv *.zip zip/
           
           
       - name: Upload build 
@@ -123,6 +127,6 @@ jobs:
         with:
           allowUpdates: true
           #artifacts: ./*.zip
-          artifacts: mjpg-streamer_${{ matrix.distro }}_${{ matrix.arch }}.zip
+          artifacts: zip/*.zip
           bodyFile: "CHANGELOG.md"
           token: ${{ secrets.GITHUB_TOKEN }}
