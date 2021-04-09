@@ -13,10 +13,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - arch: aarch64
-            distro: buster
-          - arch: armv6
-            distro: buster
+          #- arch: aarch64
+            #distro: buster
+          #- arch: armv6
+            #distro: buster
           - arch: armv7
             distro: buster
 
